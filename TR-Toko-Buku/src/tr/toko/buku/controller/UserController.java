@@ -72,6 +72,35 @@ public class UserController {
         return null;
     }
     
+
+    public boolean updateUser(User user) {
+        String sql = "UPDATE user SET username = ?, password = ?, isAdmin = ? WHERE id = ?";
+        try (PreparedStatement statement = koneksi.con.prepareStatement(sql)) {
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setBoolean(3, user.isIsAdmin());
+            statement.setInt(4, user.getId());
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Error during user update: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+    public boolean deleteUser(int id) {
+        String sql = "DELETE FROM user WHERE id = ?";
+        try (PreparedStatement statement = koneksi.con.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Error during user deletion: " + e.getMessage());
+            return false;
+        }
+    }
+    
+
+
     public boolean addToCart(int idUser, Book buku, int quantity) {
     String selectQuery = "SELECT BukuDibeli FROM transaksi WHERE idUser = ? AND payment = 0";
     String insertQuery = "INSERT INTO transaksi (idUser, BukuDibeli) VALUES (?, ?)";
