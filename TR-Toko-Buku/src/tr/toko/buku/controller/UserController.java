@@ -103,7 +103,26 @@ public boolean deleteUser(int id) {
     }
 }
 
-
+public User checkLogin(String username, String password) {
+    String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
+    try (PreparedStatement statement = koneksi.con.prepareStatement(sql)) {
+        statement.setString(1, username);
+        statement.setString(2, password);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
+                user.setIsAdmin(resultSet.getBoolean("isAdmin"));
+                return user;
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Error during login: " + e.getMessage());
+    }
+    return null;
+}
 
 
 }
