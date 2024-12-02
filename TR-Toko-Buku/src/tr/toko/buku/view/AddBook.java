@@ -45,6 +45,7 @@ public class AddBook extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 255));
 
+        jLabel1.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 0, 18)); // NOI18N
         jLabel1.setText("Add Book");
 
         jLabel2.setBackground(new java.awt.Color(51, 255, 0));
@@ -78,6 +79,8 @@ public class AddBook extends javax.swing.JFrame {
 
         jCheckBox4.setText("jCheckBox4");
 
+        addButton.setBackground(new java.awt.Color(0, 0, 102));
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
         addButton.setText("Add");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,7 +151,7 @@ public class AddBook extends javax.swing.JFrame {
                 .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addButton)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
