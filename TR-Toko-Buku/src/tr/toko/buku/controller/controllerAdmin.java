@@ -97,4 +97,44 @@ public class controllerAdmin {
         }
     }
 
+
+    
+
+    
+public boolean updateBuku(int id,String title, String author,String Category,Double price,int stok) {
+ Book bk = new Book();
+ bk.setId(id);
+ bk.setTitle(title);
+ bk.setAuthor(author);
+ bk.setCategory(Category);
+ bk.setPrice(price);
+ bk.setStok(stok);
+
+ try {
+     this.sql = "UPDATE buku SET " +
+                "title = '" + bk.getTitle() + "', " +
+                "author = '" + bk.getAuthor() + "', " +
+                "stok = " + bk.getStok() + " " +
+                "WHERE id = " + bk.getId();
+
+     this.stm.executeUpdate(sql);
+     return true;
+ } catch (Exception e) {
+     e.printStackTrace(); // Added for debugging
+     return false;
+ }
+}
+
+    
+ public boolean deleteBuku(int a){
+        Book bk = new Book();
+        bk.setId(a);
+        try {
+            this.sql="DELETE FROM tb_pasien WHERE id="+bk.getId()+"";
+            this.stm.executeUpdate(sql);
+            return true;
+        } catch (Exception e) {
+            return false;}
+}
+
 }
