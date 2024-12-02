@@ -28,10 +28,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         lblusername = new javax.swing.JLabel();
         lblpassword = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -43,12 +43,6 @@ public class Login extends javax.swing.JFrame {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
             }
         });
 
@@ -72,9 +66,9 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(lblusername)
                     .addComponent(lblpassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                 .addGap(56, 56, 56))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,13 +89,13 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblusername)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblpassword))
-                .addGap(38, 38, 38)
+                    .addComponent(lblpassword)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addComponent(jToggleButton1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,10 +104,6 @@ public class Login extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,8 +142,8 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblpassword;
     private javax.swing.JLabel lblusername;
