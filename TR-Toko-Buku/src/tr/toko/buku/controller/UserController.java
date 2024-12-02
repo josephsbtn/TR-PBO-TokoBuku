@@ -8,6 +8,7 @@ import tr.toko.buku.model.Keranjang;
 import tr.toko.buku.model.Transaction;
 import com.google.gson.Gson;
 
+
 public class UserController {
 
     private Koneksi koneksi;
@@ -27,7 +28,8 @@ public class UserController {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setBoolean(3, user.isIsAdmin());
-            return statement.executeUpdate() > 0;
+            statement.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.out.println("Error during user creation: " + e.getMessage());
             return false;
@@ -72,11 +74,6 @@ public class UserController {
         return null;
     }
     
-
-    
-
-
-
 
     public boolean addToCart(int idUser, Book buku, int quantity) {
     String selectQuery = "SELECT BukuDibeli FROM transaksi WHERE idUser = ? AND payment = 0";
@@ -127,7 +124,6 @@ public class UserController {
     }
 }
 
-
  // UPDATE: Update a user by ID
 public boolean updateUser(User user) {
     String sql = "UPDATE user SET username = ?, password = ?, isAdmin = ? WHERE id = ?";
@@ -136,7 +132,8 @@ public boolean updateUser(User user) {
         statement.setString(2, user.getPassword());
         statement.setBoolean(3, user.isIsAdmin());
         statement.setInt(4, user.getId());
-        return statement.executeUpdate() > 0;
+        statement.executeUpdate();
+        return true;
     } catch (SQLException e) {
         System.out.println("Error during user update: " + e.getMessage());
         return false;
@@ -147,10 +144,15 @@ public boolean deleteUser(int id) {
     String sql = "DELETE FROM user WHERE id = ?";
     try (PreparedStatement statement = koneksi.con.prepareStatement(sql)) {
         statement.setInt(1, id);
-        return statement.executeUpdate() > 0;
+        statement.executeUpdate();
+        return true;
     } catch (SQLException e) {
         System.out.println("Error during user deletion: " + e.getMessage());
         return false;
     }
 }
+
+
+
+
 }

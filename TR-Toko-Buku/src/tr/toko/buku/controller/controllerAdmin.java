@@ -44,12 +44,11 @@ public class controllerAdmin {
                     + "VALUE ('" + book.getTitle() + "' , '" + book.getAuthor() + "','" + book.getCategory() + "','" + book.getPrice() + "', '" + book.getStok() + "' )";
 
             this.stm.executeUpdate(sql);
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
-
-        return true;
     }
 
     public void tampilanDataBuku() {
