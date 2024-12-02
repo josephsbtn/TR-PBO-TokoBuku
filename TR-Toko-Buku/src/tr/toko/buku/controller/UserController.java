@@ -8,7 +8,7 @@ import tr.toko.buku.model.Keranjang;
 import tr.toko.buku.model.Transaction;
 import com.google.gson.Gson;
 
-
+@SuppressWarnings("unused")
 public class UserController {
 
     private Koneksi koneksi;

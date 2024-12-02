@@ -5,11 +5,20 @@
 package tr.toko.buku.model;
 
 public class Book {
+  private int id;
   private String title;
   private String author;
   private String Category;
   private double price;
   private int stok;
+
+    public int getId() {
+    return id;
+}
+
+public void setId(int id) {
+    this.id = id;
+}
 
     public String getTitle() {
         return title;
