@@ -6,15 +6,14 @@ import tr.toko.buku.model.User;
 import tr.toko.buku.model.Book;
 import tr.toko.buku.model.Keranjang;
 import tr.toko.buku.model.Transaction;
-import com.google.gson.Gson;
-import tr.toko.buku.model.User;
+
 
 @SuppressWarnings("unused")
 public class UserController {
 
     private Koneksi koneksi;
     private Transaction transaction = new Transaction();
-    private Gson gson = new Gson();
+
 
     // Constructor to initialize Koneksi
     public UserController() {
@@ -73,75 +72,8 @@ public class UserController {
             System.out.println("Error fetching user by ID: " + e.getMessage());
         }
         return null;
-
     }
     
-    
-    //LOGIN
-    public boolean login(String username, String password){     
-         User user = new User();
-         user.setUsername(username);
-         user.setPassword(password);
-         String sql = "SELECT * FROM user WHERE username = ? AND password = ? ";
-        try(PreparedStatement statement = koneksi.con.prepareStatement(sql)) { 
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                   return true;
-                }
-                else{
-                    return false;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-            return false;
-        }
-    }
-    
-    //ADD BOOK TO CART
-    public boolean addToCart(int idUser, Book buku, int quantity) {
-    String selectQuery = "SELECT BukuDibeli FROM transaksi WHERE idUser = ? AND payment = 0";
-    String insertQuery = "INSERT INTO transaksi (idUser, BukuDibeli) VALUES (?, ?)";
-    String updateQuery = "UPDATE transaksi SET BukuDibeli = ? WHERE idUser = ? AND payment = 0";
-
-    try (PreparedStatement selectStmt = koneksi.con.prepareStatement(selectQuery)) {
-        selectStmt.setInt(1, idUser);
-        try (ResultSet result = selectStmt.executeQuery()) {
-            ArrayList<Keranjang> keranjangList;
-            if (result.next()) {
-                String ygDibeli = result.getString("BukuDibeli");
-                keranjangList = gson.fromJson(ygDibeli, ArrayList.class);
-            } else {
-                keranjangList = new ArrayList<>();
-            }
-            
-            Keranjang newItem = new Keranjang(buku, quantity);
-            keranjangList.add(newItem);
-            String updatedCart = gson.toJson(keranjangList);
-
-            if (result.next()) {   
-                try (PreparedStatement updateStmt = koneksi.con.prepareStatement(updateQuery)) {
-                    updateStmt.setString(1, updatedCart);
-                    updateStmt.setInt(2, idUser);
-                    updateStmt.executeUpdate();
-                }
-            } else {
-                try (PreparedStatement insertStmt = koneksi.con.prepareStatement(insertQuery)) {
-                    insertStmt.setInt(1, idUser);
-                    insertStmt.setString(2, updatedCart);
-                    insertStmt.executeUpdate();
-                }
-            }
-        }
-        return true;
-
-    } catch (SQLException e) {
-        System.out.println("Something went wrong: " + e.getMessage());
-        return false;
-    }
-}
 
  // UPDATE: Update a user by ID
 public boolean updateUser(User user) {
