@@ -33,15 +33,32 @@ public class controllerAdmin {
         dtm.addColumn("ID");
         dtm.addColumn("Judul Buku");
         dtm.addColumn("Penulis");
-        dtm.addColumn("Genre");
+        dtm.addColumn("Category");
         dtm.addColumn("Harga");
         dtm.addColumn("Stok");
+        
+        try {
+            sql = "SELECT * FROM buku";
+            res = stm.executeQuery(sql);
+            while (res.next()) {
+                Object[] obj = new Object[6];
+                obj[0] = res.getInt("id");
+                obj[1] = res.getString("judul");
+                obj[2] = res.getString("author");
+                obj[3] = res.getString("category");
+                obj[4] = res.getDouble("price");
+                obj[5] = res.getInt("stok");
+                dtm.addRow(obj);
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading books: " + e.getMessage());
+        }
         return dtm;
-    }
+}
 
     public boolean addBuku(Book book) {
         try {
-            this.sql = "INSERT INTO buku (Judul, Author, Genre, Harga, Stok) "
+            this.sql = "INSERT INTO buku (judul, author, category, price, stok) "
                     + "VALUE ('" + book.getTitle() + "' , '" + book.getAuthor() + "','" + book.getCategory() + "','" + book.getPrice() + "', '" + book.getStok() + "' )";
 
             this.stm.executeUpdate(sql);
@@ -65,7 +82,7 @@ public class controllerAdmin {
                 obj[0] = res.getInt("id");
                 obj[1] = res.getString("Judul");
                 obj[2] = res.getString("Author");
-                obj[3] = res.getString("Genre");
+                obj[3] = res.getString("Category");
                 obj[4] = res.getInt("Stok");
                 obj[5] = res.getDouble("Harga");
 
@@ -133,7 +150,7 @@ public boolean updateBuku(int id,String title, String author,String Category,Dou
         Book bk = new Book();
         bk.setId(a);
         try {
-            this.sql="DELETE FROM tb_pasien WHERE id="+bk.getId()+"";
+            this.sql="DELETE FROM buku WHERE id="+bk.getId()+"";
             this.stm.executeUpdate(sql);
             return true;
         } catch (Exception e) {

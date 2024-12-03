@@ -238,7 +238,7 @@ public class AddBook extends javax.swing.JFrame {
            DashboardAdmin da = new DashboardAdmin();
            this.setVisible(false);
            da.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
     /**
      * @param args the command line arguments

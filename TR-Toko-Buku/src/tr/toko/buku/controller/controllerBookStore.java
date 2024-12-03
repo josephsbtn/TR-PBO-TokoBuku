@@ -1,5 +1,4 @@
 package tr.toko.buku.controller;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +8,7 @@ import tr.toko.buku.model.Book;
 import tr.toko.buku.model.BookStoreInterface;
 import tr.toko.buku.model.Transaction;
 import javax.swing.table.DefaultTableModel;
-
+@SuppressWarnings("unused")
 
 public class controllerBookStore {
 
