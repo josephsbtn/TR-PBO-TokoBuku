@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import tr.toko.buku.controller.UserController;
 import tr.toko.buku.model.User;
+import tr.toko.buku.view.Register;
 
 /**
  *
@@ -61,7 +62,7 @@ public class Login extends javax.swing.JFrame {
 
         btnlogin.setBackground(new java.awt.Color(0, 0, 102));
         btnlogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnlogin.setText("login");
+        btnlogin.setText("Login");
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnloginActionPerformed(evt);
@@ -69,6 +70,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         btntoregister.setText("register");
+        btntoregister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntoregisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +129,13 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
+    private void btntoregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntoregisterActionPerformed
+        Register reg = new Register();
+        this.setVisible(false);
+        reg.setVisible(true);
+    }//GEN-LAST:event_btntoregisterActionPerformed
+
+    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         String username = new String(jTextField1.getText());
         String password = new String(jPasswordField1.getPassword());

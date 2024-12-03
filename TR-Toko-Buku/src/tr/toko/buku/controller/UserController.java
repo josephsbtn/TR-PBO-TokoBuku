@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import tr.toko.buku.model.User;
 import tr.toko.buku.model.Book;
-import tr.toko.buku.model.Keranjang;
 import tr.toko.buku.model.Transaction;
 
 
@@ -23,11 +22,10 @@ public class UserController {
 
     // CREATE: Add a new user
     public boolean createUser(User user) {
-        String sql = "INSERT INTO user (username, password, isAdmin) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO user (username, password) VALUES (?, ?)";
         try (PreparedStatement statement = koneksi.con.prepareStatement(sql)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
-            statement.setBoolean(3, user.isIsAdmin());
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {

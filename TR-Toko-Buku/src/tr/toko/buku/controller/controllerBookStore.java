@@ -7,11 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import tr.toko.buku.model.Book;
 import tr.toko.buku.model.BookStoreInterface;
-import tr.toko.buku.model.Keranjang;
 import tr.toko.buku.model.Transaction;
 import javax.swing.table.DefaultTableModel;
-import com.google.gson.Gson;
-@SuppressWarnings("unused")
+
 
 public class controllerBookStore {
 
@@ -20,7 +18,6 @@ public class controllerBookStore {
     public Statement stm;
     public ResultSet res;
     public String sql;
-    private Gson gson = new Gson();
     private Koneksi koneksi;
     
     DefaultTableModel dtm = new DefaultTableModel();
@@ -31,56 +28,61 @@ public class controllerBookStore {
         this.stm = db.stm;
     }
     
-
-    public boolean addToCart(int idUser, Book buku, int quantity) {
-    String selectQuery = "SELECT BukuDibeli FROM transaksi WHERE idUser = ? AND payment = 0";
-    String insertQuery = "INSERT INTO transaksi (idUser, BukuDibeli) VALUES (?, ?)";
-    String updateQuery = "UPDATE transaksi SET BukuDibeli = ? WHERE idUser = ? AND payment = 0";
-
-    try (PreparedStatement selectStmt = koneksi.con.prepareStatement(selectQuery)) {
-        // Check if a transaction exists for the user
-        selectStmt.setInt(1, idUser);
-        try (ResultSet result = selectStmt.executeQuery()) {
-            ArrayList<Keranjang> keranjangList;
-
-            if (result.next()) {
-                // Existing transaction: Get current cart and update it
-                String ygDibeli = result.getString("BukuDibeli");
-                keranjangList = gson.fromJson(ygDibeli, ArrayList.class);
-            } else {
-                // New transaction: Initialize cart
-                keranjangList = new ArrayList<>();
-            }
-
-            // Add the new item to the cart
-            Keranjang newItem = new Keranjang(buku, quantity);
-            keranjangList.add(newItem);
-            String updatedCart = gson.toJson(keranjangList);
-
-            if (result.next()) {
-                // Update existing transaction
-                try (PreparedStatement updateStmt = koneksi.con.prepareStatement(updateQuery)) {
-                    updateStmt.setString(1, updatedCart);
-                    updateStmt.setInt(2, idUser);
-                    updateStmt.executeUpdate();
-                }
-            } else {
-                // Insert new transaction
-                try (PreparedStatement insertStmt = koneksi.con.prepareStatement(insertQuery)) {
-                    insertStmt.setInt(1, idUser);
-                    insertStmt.setString(2, updatedCart);
-                    insertStmt.executeUpdate();
-                }
-            }
-
-        }
-        return true;
-
-    } catch (SQLException e) {
-        System.out.println("Something went wrong: " + e.getMessage());
-        return false;
+    public DefaultTableModel tableCart(){
+        dtm.addColumn("BukuDibeli");
+        dtm.addColumn("Harga Satuan");
+        dtm.addColumn("Jumlah");
+        dtm.addColumn("Subtotal");
+        return dtm;
     }
-}
+    
+    public boolean addToCart(int idUser, String BukuDibeli, int Jumlah, double hargaSatuan ){
+        Transaction ts = new Transaction();
+        ts.setIdUser(idUser);
+        ts.setBukuDibeli(BukuDibeli);
+        ts.setJumlah(Jumlah);
+        ts.setHargaSatuan(hargaSatuan);
+        ts.setSubtotal(hargaSatuan * Jumlah);
+          try {
+            this.sql = "INSERT INTO transaksi (idUser, BukuDibeli, Jumlah, hargaSatuan, subtotal) VALUES ('"+ts.getIdUser() +"','"+ts.getBukuDibeli()+"',"+ts.getJumlah()+", "+ts.getHargaSatuan()+", "+ts.getSubtotal()+" )" ;
+            this.stm.executeUpdate(sql);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public void dataTransaksiByUser(int idUser){
+        try{
+         //persiapan tabel - clear are dtm
+            dtm.getDataVector().removeAllElements();
+            dtm.fireTableDataChanged();
+            
+             //QUERY
+            this.sql = "SELECT * FROM transaksi WHERE idUser = "+idUser+" AND payment = 0";
+            
+            //jalankan query
+            res = stm.executeQuery(sql);
+            
+            //unbox data to object
+            while(res.next()){
+               Object[] obj = new Object [4];
+               obj[0] = res.getString("BukuDibeli");
+               obj[1] = res.getString("hargaSatuan");
+               obj[2] = res.getString("Jumlah");
+               obj[3] = res.getString("subtotal");
+           
+               //masukan ke dtm
+               dtm.addRow(obj);
+            }
+        }catch (Exception e) {
+            System.out.println("GAGAL " + e);
+        }
+    }
+    
+    public void bayar(){
+        
+    }
     
 }
 

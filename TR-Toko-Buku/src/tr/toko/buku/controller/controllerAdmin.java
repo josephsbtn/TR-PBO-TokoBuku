@@ -18,13 +18,14 @@ public class controllerAdmin {
         this.stm = db.stm;
     }
 
-    public DefaultTableModel Transaction() {
-        DefaultTableModel dtm = new DefaultTableModel();
-        dtm.addColumn("ID");
-        dtm.addColumn("ID pembeli");
-        dtm.addColumn("Buku Dibeli");
-        dtm.addColumn("Total Pembelian");
-        return dtm;
+   public DefaultTableModel Transaction()
+ {
+        DefaultTableModel tbTransaksi = new DefaultTableModel();
+        tbTransaksi.addColumn("ID");
+        tbTransaksi.addColumn("ID pembeli");
+        tbTransaksi.addColumn("Buku Dibeli");
+        tbTransaksi.addColumn("Total Pembelian");
+        return tbTransaksi;
     }
 
     public DefaultTableModel tableBuku() {
@@ -60,12 +61,13 @@ public class controllerAdmin {
             res = stm.executeQuery(sql);
 
             while (res.next()) {
-                Object[] obj = new Object[5];
-                obj[0] = res.getString("id");
+                Object[] obj = new Object[6];
+                obj[0] = res.getInt("id");
                 obj[1] = res.getString("Judul");
                 obj[2] = res.getString("Author");
-                obj[3] = res.getString("TahunTerbit");
-                obj[4] = res.getString("Harga");
+                obj[3] = res.getString("Genre");
+                obj[4] = res.getInt("Stok");
+                obj[5] = res.getDouble("Harga");
 
                 //masukan ke dtm
                 dtm.addRow(obj);
@@ -94,6 +96,7 @@ public class controllerAdmin {
             }
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
