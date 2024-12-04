@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import tr.toko.buku.model.User;
 import tr.toko.buku.controller.controllerBookStore;
 import javax.swing.table.DefaultTableModel;
+import tr.toko.buku.model.Transaction;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Cart extends javax.swing.JFrame {
     private controllerBookStore bs = new controllerBookStore();
   private DefaultTableModel data ;
   DashboardUser du ;
+  private Transaction ts = new Transaction();
   
     
     public Cart() {
@@ -69,6 +71,7 @@ public void refreshTable() {
         lblTotalHarga = new javax.swing.JLabel();
         lblTotalHarga1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        deletecart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -123,13 +126,29 @@ public void refreshTable() {
             }
         });
 
+        deletecart.setText("Delete");
+        deletecart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletecartMouseClicked(evt);
+            }
+        });
+        deletecart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletecartActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(deletecart)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(12, 12, 12)
@@ -163,7 +182,9 @@ public void refreshTable() {
                     .addComponent(lblTotalHarga)
                     .addComponent(lblTotalHarga1))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(deletecart))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -186,6 +207,24 @@ public void refreshTable() {
             JOptionPane.showMessageDialog(this, "Gagal Melakukan pendaftaran", "Payment Gagal", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void deletecartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletecartMouseClicked
+        // TODO add your handling code here:
+       refreshTable();
+       
+       int pilih = tblCart.getSelectedRow();
+        ts.setBukuDibeli(this.tblCart.getValueAt(pilih, 0).toString());
+        ts.setHargaSatuan((double) this.tblCart.getValueAt(pilih, 1));
+        ts.setJumlah((int) this.tblCart.getValueAt(pilih, 2));
+        ts.setSubtotal((double) this.tblCart.getValueAt(pilih, 3));
+        
+    }//GEN-LAST:event_deletecartMouseClicked
+
+    private void deletecartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletecartActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_deletecartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,6 +262,7 @@ public void refreshTable() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deletecart;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
