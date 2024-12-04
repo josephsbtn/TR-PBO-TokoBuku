@@ -18,7 +18,7 @@ public class DashboardUser extends javax.swing.JFrame {
     private int stokBuku = 0;
     private Book buku = new Book();
     private User currentUser;
-    private Tra
+    private Transaction ts;
 
 public DashboardUser() {
     initComponents(); 

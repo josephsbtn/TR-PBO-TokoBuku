@@ -27,7 +27,6 @@ public class DeleteBook extends javax.swing.JFrame {
         controllerAdmin ca= new controllerAdmin();
         DefaultTableModel dtm= ca.tableBuku();
         this.deletetable.setModel(dtm);
-        ca.tampilanDataBuku();
     }
 
     /**
