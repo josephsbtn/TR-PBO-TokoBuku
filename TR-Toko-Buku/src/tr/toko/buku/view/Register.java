@@ -45,15 +45,17 @@ public class Register extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 1, 18)); // NOI18N
         jLabel1.setText("REGISTER");
 
-        lblUsername.setFont(new java.awt.Font("SimSun-ExtG", 0, 18)); // NOI18N
+        lblUsername.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         lblUsername.setText("Username");
 
-        lblPassword.setFont(new java.awt.Font("SimSun-ExtG", 0, 18)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         lblPassword.setText("Password");
 
         btnregister.setBackground(new java.awt.Color(0, 0, 102));
+        btnregister.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
         btnregister.setForeground(new java.awt.Color(255, 255, 255));
         btnregister.setText("Register");
+        btnregister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnregister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnregisterActionPerformed(evt);
@@ -69,11 +71,11 @@ public class Register extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPassword))
@@ -82,10 +84,10 @@ public class Register extends javax.swing.JFrame {
                             .addComponent(txtUsername)
                             .addComponent(txtPassword)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
                         .addComponent(btntologin)
-                        .addGap(24, 24, 24)
-                        .addComponent(btnregister)))
+                        .addGap(119, 119, 119)
+                        .addComponent(btnregister, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
@@ -101,11 +103,11 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addGap(33, 33, 33)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnregister)
+                    .addComponent(btnregister, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btntologin))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(83, 83, 83))
         );
 
         pack();

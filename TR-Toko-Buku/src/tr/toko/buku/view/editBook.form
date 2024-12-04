@@ -37,7 +37,7 @@
                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+              <EmptySpace pref="154" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -58,7 +58,7 @@
                               <Component id="titleedit" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="stockedit" alignment="1" min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="1" min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
@@ -131,7 +131,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -154,6 +154,9 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="edittbl">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="33" red="66" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
                 <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -171,6 +174,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Javanese Text" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="ID Buku"/>
       </Properties>
     </Component>
@@ -181,6 +187,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Javanese Text" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Title"/>
       </Properties>
     </Component>
@@ -191,6 +200,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Javanese Text" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Author"/>
       </Properties>
     </Component>
@@ -201,6 +213,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Javanese Text" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Category"/>
       </Properties>
     </Component>
@@ -222,6 +237,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Javanese Text" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Price"/>
       </Properties>
     </Component>
@@ -229,6 +247,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Javanese Text" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Stock"/>
       </Properties>
     </Component>

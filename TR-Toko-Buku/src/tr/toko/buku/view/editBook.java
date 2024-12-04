@@ -61,6 +61,7 @@ public class editBook extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Javanese Text", 0, 18)); // NOI18N
         jLabel1.setText("Book Editing");
 
+        edittbl.setBackground(new java.awt.Color(102, 51, 0));
         edittbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -79,10 +80,12 @@ public class editBook extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(edittbl);
 
+        jLabel2.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
         jLabel2.setText("ID Buku");
 
         idedit.setText("id");
 
+        jLabel4.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
         jLabel4.setText("Title");
 
         titleedit.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +94,7 @@ public class editBook extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
         jLabel5.setText("Author");
 
         authoredit.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +103,7 @@ public class editBook extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
         jLabel6.setText("Category");
 
         buttonGroup1.add(fiksiedit);
@@ -107,8 +112,10 @@ public class editBook extends javax.swing.JFrame {
         buttonGroup1.add(nonfiksiedit);
         nonfiksiedit.setText("Non-Fiksi");
 
+        jLabel7.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
         jLabel7.setText("Price");
 
+        jLabel8.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
         jLabel8.setText("Stock");
 
         jButton1.setText("Edit");
@@ -136,7 +143,7 @@ public class editBook extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +160,7 @@ public class editBook extends javax.swing.JFrame {
                                 .addComponent(authoredit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                                 .addComponent(titleedit, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(stockedit, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(65, 65, 65))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +216,7 @@ public class editBook extends javax.swing.JFrame {
                     .addComponent(stockedit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
