@@ -2,6 +2,7 @@ package tr.toko.buku.controller;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import tr.toko.buku.model.User;
 import tr.toko.buku.model.Book;
 import tr.toko.buku.model.Transaction;
@@ -10,6 +11,9 @@ import tr.toko.buku.model.Transaction;
 @SuppressWarnings("unused")
 public class UserController {
 
+    public Statement stm;
+    public ResultSet res;
+    public String sql;
     private Koneksi koneksi;
     private Transaction transaction = new Transaction();
 
@@ -122,5 +126,32 @@ public User checkLogin(String username, String password) {
     return null;
 }
 
+public DefaultTableModel tabelKeranjang(){
+        DefaultTableModel tbKeranjang = new DefaultTableModel();
+        tbKeranjang.addColumn("Buku Dibeli");
+        tbKeranjang.addColumn("Total Pembelian");
+        tbKeranjang.addColumn("ID");
+        tbKeranjang.addColumn("ID Pembeli");
 
+        try {
+            this.sql = "SELECT * FROM transaksi";
+            res = stm.executeQuery(sql);
+
+            while (res.next()) {
+                Object[] obj = new Object[4];
+                obj[0] = res.getInt("id");
+                obj[1] = res.getInt("idUser");
+                obj[2] = res.getString("BukuDibeli"); 
+                obj[3] = res.getDouble("total");
+                tbKeranjang.addRow(obj);
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading transactions: " + e.getMessage());
+        }
+
+        return tbKeranjang;
+    }
 }
+
+
+
