@@ -193,12 +193,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        int selectedRow = tblBuku.getSelectedRow();
-        if (selectedRow != -1) {
-                //Masukin method/aksi edit disni nanti yo
-        } else {
-            JOptionPane.showMessageDialog(this, "Pilih buku yang akan diedit");
-        }
+            editBook eb = new editBook();
+            this.setVisible(false);
+            eb.setVisible(true);
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         

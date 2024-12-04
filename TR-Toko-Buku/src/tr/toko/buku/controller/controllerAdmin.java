@@ -102,7 +102,7 @@ public boolean updateBuku(int id,String title, String author,String Category,Dou
 
  try {
      this.sql = "UPDATE buku SET " +
-                "title = '" + bk.getTitle() + "', " +
+                "judul = '" + bk.getTitle() + "', " +
                 "author = '" + bk.getAuthor() + "', " +
                 "stok = " + bk.getStok() + " " +
                 "WHERE id = " + bk.getId();
