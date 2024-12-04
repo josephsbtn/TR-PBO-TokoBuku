@@ -43,9 +43,10 @@ public class controllerBookStore {
         ts.setJumlah(Jumlah);
         ts.setHargaSatuan(hargaSatuan);
         ts.setSubtotal(hargaSatuan * Jumlah);
+        System.out.println("ID BUKU :" + buku.getId());
           try {
             this.sql = "INSERT INTO transaksi (idUser, BukuDibeli, Jumlah, hargaSatuan, subtotal) VALUES ('"+ts.getIdUser() +"','"+ts.getBukuDibeli()+"',"+ts.getJumlah()+", "+ts.getHargaSatuan()+", "+ts.getSubtotal()+" )" ;
-            String setStok = "UPDATE buku SET stok = "+buku.getStok()+" ";
+            String setStok = "UPDATE buku SET stok = "+buku.getStok()+" WHERE id = "+buku.getId()+" ";
             this.stm.executeUpdate(setStok);
             this.stm.executeUpdate(sql);
             return true;
