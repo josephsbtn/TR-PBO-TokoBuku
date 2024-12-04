@@ -11,7 +11,7 @@ public class Koneksi {
     
     public void confiq(){
         try {
-            String url = "jdbc:mysql://localhost:3306/db_tokobuku";
+            String url = "jdbc:mysql://localhost:3308/db_tokobuku";
             String user = "root";
             String password = "";
             Class.forName("com.mysql.cj.jdbc.Driver");
