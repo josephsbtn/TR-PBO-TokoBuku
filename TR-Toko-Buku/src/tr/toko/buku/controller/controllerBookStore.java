@@ -27,13 +27,7 @@ public class controllerBookStore {
         this.stm = db.stm;
     }
     
-    public DefaultTableModel tableCart(){
-        dtm.addColumn("BukuDibeli");
-        dtm.addColumn("Harga Satuan");
-        dtm.addColumn("Jumlah");
-        dtm.addColumn("Subtotal");
-        return dtm;
-    }
+
     
     public boolean addToCart(int idUser, String BukuDibeli, int Jumlah, double hargaSatuan, Book buku ){
         Transaction ts = new Transaction();
@@ -56,7 +50,14 @@ public class controllerBookStore {
         }
     }
     
-    public void dataTransaksiByUser(int idUser){
+    
+    public DefaultTableModel dataTransaksiByUser(int idUser){
+        
+        this.dtm.addColumn("Book");
+        this.dtm.addColumn("Price");
+        this.dtm.addColumn("Quantity");
+        this.dtm.addColumn("Subtotal");
+        
         try{
          //persiapan tabel - clear are dtm
             dtm.getDataVector().removeAllElements();
@@ -82,11 +83,26 @@ public class controllerBookStore {
         }catch (Exception e) {
             System.out.println("GAGAL " + e);
         }
+        return dtm;
     }
     
-    public void bayar(){
-        
+    public boolean bayar(int idUser){
+        try {
+            dtm.getDataVector().removeAllElements();
+            dtm.fireTableDataChanged();
+            this.sql = "UPDATE transaksi SET payment = 1 WHERE idUser = "+idUser+" AND payment = 0";
+            int result = stm.executeUpdate(sql);
+            if(result <= 0){
+                System.out.println("No transaction found");
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("GAGALL : " + e.getMessage());
+            return false;
+        }
     }
+    
     
 }
 

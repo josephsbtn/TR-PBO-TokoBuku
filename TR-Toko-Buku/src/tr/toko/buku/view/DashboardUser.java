@@ -20,6 +20,7 @@ public class DashboardUser extends javax.swing.JFrame {
     private Book buku = new Book();
     private User currentUser;
     private Transaction ts;
+    private controllerBookStore bs = new controllerBookStore();
 
 public DashboardUser() {
     initComponents(); 
@@ -263,7 +264,6 @@ public DashboardUser(User user) {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        controllerBookStore bs = new controllerBookStore();
         int quantity = 0;
         try {
             quantity = Integer.parseInt(this.txtQuantity.getText());

@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package tr.toko.buku.view;
+import javax.swing.JOptionPane;
 import tr.toko.buku.model.User;
+import tr.toko.buku.controller.controllerBookStore;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,12 +15,39 @@ import tr.toko.buku.model.User;
 public class Cart extends javax.swing.JFrame {
 
     private User currentUser;
+    private double totalHarga = 0;
+    private controllerBookStore bs = new controllerBookStore();
+  private DefaultTableModel data ;
+    
     public Cart() {
         initComponents();
+        refreshTable();
     }
+    
     public Cart(User user){
-       currentUser = user;
+       initComponents();
+       currentUser = user;   
+       refreshTable();
     }
+    
+public void refreshTable() {
+     data = bs.dataTransaksiByUser(currentUser.getId()); 
+    if (data != null) {
+        this.tblCart.setModel(data);
+        System.out.println("Table populated successfully.");
+    } else {
+        System.out.println("No data found for user!");
+        JOptionPane.showMessageDialog(this, "Keranjang masih kosong", "Error", JOptionPane.WARNING_MESSAGE);
+    }
+    for (int i = 0; i < tblCart.getRowCount(); i++) {
+        totalHarga += Double.parseDouble(tblCart.getValueAt(i, 3).toString());
+        this.lblTotalHarga.setText(String.valueOf(totalHarga));
+    }    
+}
+
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +61,7 @@ public class Cart extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCart = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         lblTotalHarga = new javax.swing.JLabel();
         lblTotalHarga1 = new javax.swing.JLabel();
@@ -56,10 +86,10 @@ public class Cart extends javax.swing.JFrame {
         jLabel1.setText("CART");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jTable1.setBackground(new java.awt.Color(51, 51, 0));
-        jTable1.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCart.setBackground(new java.awt.Color(51, 51, 0));
+        tblCart.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
+        tblCart.setForeground(new java.awt.Color(255, 255, 255));
+        tblCart.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,7 +100,7 @@ public class Cart extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCart);
 
         jLabel2.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
         jLabel2.setText("TOTAL : ");
@@ -84,6 +114,11 @@ public class Cart extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("PAYMENT");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,6 +171,19 @@ public class Cart extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DashboardUser du = new DashboardUser(currentUser);
+        boolean status = bs.bayar(currentUser.getId());
+        if(status){
+            du.setVisible(true);
+            this.setVisible(false); 
+            JOptionPane.showMessageDialog(this, "Berhasil Melakukan Pembayaran", "Payment Berhasil", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Gagal Melakukan pendaftaran", "Payment Gagal", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -177,8 +225,8 @@ public class Cart extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTotalHarga;
     private javax.swing.JLabel lblTotalHarga1;
+    private javax.swing.JTable tblCart;
     // End of variables declaration//GEN-END:variables
 }

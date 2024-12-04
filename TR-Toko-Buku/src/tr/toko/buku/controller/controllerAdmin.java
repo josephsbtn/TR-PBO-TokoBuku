@@ -21,20 +21,22 @@ public class controllerAdmin {
 public DefaultTableModel Transaction() {
         DefaultTableModel tbTransaksi = new DefaultTableModel();
         tbTransaksi.addColumn("ID");
-        tbTransaksi.addColumn("ID Pembeli");
-        tbTransaksi.addColumn("Buku Dibeli");
-        tbTransaksi.addColumn("Total Pembelian");
+        tbTransaksi.addColumn("ID User");
+        tbTransaksi.addColumn("Book");
+        tbTransaksi.addColumn("Quantity");
+        tbTransaksi.addColumn("Subtotal");
 
         try {
             this.sql = "SELECT * FROM transaksi";
             res = stm.executeQuery(sql);
 
             while (res.next()) {
-                Object[] obj = new Object[4];
+                Object[] obj = new Object[5];
                 obj[0] = res.getInt("id");
                 obj[1] = res.getInt("idUser");
                 obj[2] = res.getString("BukuDibeli"); 
-                obj[3] = res.getDouble("total");
+                obj[3] = res.getInt("Jumlah");
+                obj[4] = res.getDouble("subtotal");
                 tbTransaksi.addRow(obj);
             }
         } catch (Exception e) {
