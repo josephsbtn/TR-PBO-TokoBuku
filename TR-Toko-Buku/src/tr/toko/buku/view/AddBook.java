@@ -28,7 +28,6 @@ public class AddBook extends javax.swing.JFrame {
         controllerAdmin ca = new controllerAdmin();
         DefaultTableModel dtm = ca.tableBuku();     
         this.tblBook.setModel(dtm);    
-        ca.tampilanDataBuku();
     }
     
 
@@ -234,7 +233,7 @@ public class AddBook extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
            DashboardAdmin da = new DashboardAdmin();
            this.setVisible(false);
            da.setVisible(true);

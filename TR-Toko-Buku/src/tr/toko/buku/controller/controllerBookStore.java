@@ -35,8 +35,9 @@ public class controllerBookStore {
         return dtm;
     }
     
-    public boolean addToCart(int idUser, String BukuDibeli, int Jumlah, double hargaSatuan ){
+    public boolean addToCart(int idUser, String BukuDibeli, int Jumlah, double hargaSatuan, Book buku ){
         Transaction ts = new Transaction();
+        buku.setSellStok(Jumlah);
         ts.setIdUser(idUser);
         ts.setBukuDibeli(BukuDibeli);
         ts.setJumlah(Jumlah);
@@ -44,9 +45,12 @@ public class controllerBookStore {
         ts.setSubtotal(hargaSatuan * Jumlah);
           try {
             this.sql = "INSERT INTO transaksi (idUser, BukuDibeli, Jumlah, hargaSatuan, subtotal) VALUES ('"+ts.getIdUser() +"','"+ts.getBukuDibeli()+"',"+ts.getJumlah()+", "+ts.getHargaSatuan()+", "+ts.getSubtotal()+" )" ;
+            String setStok = "UPDATE buku SET stok = "+buku.getStok()+" ";
+            this.stm.executeUpdate(setStok);
             this.stm.executeUpdate(sql);
             return true;
         } catch (Exception e) {
+              System.out.println(e.getMessage());
             return false;
         }
     }

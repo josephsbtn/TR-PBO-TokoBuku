@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package tr.toko.buku.view;
+import tr.toko.buku.model.User;
 
 /**
  *
@@ -10,11 +11,12 @@ package tr.toko.buku.view;
  */
 public class Cart extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Cart
-     */
+    private User currentUser;
     public Cart() {
         initComponents();
+    }
+    public Cart(User user){
+       currentUser = user;
     }
 
     /**

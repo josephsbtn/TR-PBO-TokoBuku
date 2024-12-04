@@ -18,13 +18,29 @@ public class controllerAdmin {
         this.stm = db.stm;
     }
 
-   public DefaultTableModel Transaction()
- {
+public DefaultTableModel Transaction() {
         DefaultTableModel tbTransaksi = new DefaultTableModel();
         tbTransaksi.addColumn("ID");
-        tbTransaksi.addColumn("ID pembeli");
+        tbTransaksi.addColumn("ID Pembeli");
         tbTransaksi.addColumn("Buku Dibeli");
         tbTransaksi.addColumn("Total Pembelian");
+
+        try {
+            this.sql = "SELECT * FROM transaksi";
+            res = stm.executeQuery(sql);
+
+            while (res.next()) {
+                Object[] obj = new Object[4];
+                obj[0] = res.getInt("id");
+                obj[1] = res.getInt("idUser");
+                obj[2] = res.getString("BukuDibeli"); 
+                obj[3] = res.getDouble("total");
+                tbTransaksi.addRow(obj);
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading transactions: " + e.getMessage());
+        }
+
         return tbTransaksi;
     }
 
@@ -33,19 +49,20 @@ public class controllerAdmin {
         dtm.addColumn("ID");
         dtm.addColumn("Judul Buku");
         dtm.addColumn("Penulis");
-        dtm.addColumn("Category");
+        dtm.addColumn("Genre");
         dtm.addColumn("Harga");
         dtm.addColumn("Stok");
-        
+
         try {
-            sql = "SELECT * FROM buku";
+            this.sql = "SELECT * FROM buku";
             res = stm.executeQuery(sql);
+
             while (res.next()) {
                 Object[] obj = new Object[6];
                 obj[0] = res.getInt("id");
                 obj[1] = res.getString("judul");
-                obj[2] = res.getString("author");
-                obj[3] = res.getString("category");
+                obj[2] = res.getString("Author");
+                obj[3] = res.getString("Category");
                 obj[4] = res.getDouble("price");
                 obj[5] = res.getInt("stok");
                 dtm.addRow(obj);
@@ -53,8 +70,9 @@ public class controllerAdmin {
         } catch (Exception e) {
             System.out.println("Error loading books: " + e.getMessage());
         }
+
         return dtm;
-}
+    }
 
     public boolean addBuku(Book book) {
         try {
@@ -66,54 +84,6 @@ public class controllerAdmin {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
-        }
-    }
-
-    public void tampilanDataBuku() {
-        dtm.getDataVector().removeAllElements();
-        dtm.fireTableDataChanged();
-
-        try {
-            this.sql = "SELECT * FROM buku";
-            res = stm.executeQuery(sql);
-
-            while (res.next()) {
-                Object[] obj = new Object[6];
-                obj[0] = res.getInt("id");
-                obj[1] = res.getString("Judul");
-                obj[2] = res.getString("Author");
-                obj[3] = res.getString("Category");
-                obj[4] = res.getInt("Stok");
-                obj[5] = res.getDouble("Harga");
-
-                //masukan ke dtm
-                dtm.addRow(obj);
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void tampilanSemuaDataTransaksi() {
-        dtm.getDataVector().removeAllElements();
-        dtm.fireTableDataChanged();
-        try {
-            this.sql = "SELECT * FROM transaksi";
-            res = stm.executeQuery(sql);
-
-            while (res.next()) {
-                Object[] obj = new Object[4];
-                obj[0] = res.getInt("id");
-                obj[1] = res.getInt("idUser");
-                obj[2] = res.getArray("BukuDibeli");
-                obj[3] = res.getDouble("total");
-
-                dtm.addRow(obj);
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
     }
 

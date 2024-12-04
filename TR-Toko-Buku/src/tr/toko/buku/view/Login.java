@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
         btntoregister = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(102, 0, 0));
+        setBackground(new java.awt.Color(51, 255, 0));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 0, 18)); // NOI18N
@@ -138,7 +138,7 @@ public class Login extends javax.swing.JFrame {
         }
         
         User user = userController.checkLogin(username, password);
-        
+        System.out.println("user" + user.getUsername() + "id : " + user.getId());
         if (user != null) {
             this.dispose(); // Close login window
             
@@ -153,7 +153,7 @@ public class Login extends javax.swing.JFrame {
                 // Open user dashboard
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        new DashboardUser().setVisible(true);
+                        new DashboardUser(user).setVisible(true);
                     }
                 });
             }

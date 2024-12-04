@@ -22,27 +22,21 @@ public class DashboardAdmin extends javax.swing.JFrame {
     
     public void refreshTable(){
         DefaultTableModel tableTransaksi = ca.Transaction();
-        dataBuku();
         if(tableTransaksi != null){
             this.tblTransaksi.setModel(tableTransaksi);
         }
         else{
             System.out.println("transaksi null");
             }
-        ca.tampilanSemuaDataTransaksi();
-    }
-    
-    public void dataBuku(){
-        controllerAdmin ca = new controllerAdmin();
-            DefaultTableModel tableBuku = ca.tableBuku();
-                    if(tableBuku != null){
+        
+        DefaultTableModel tableBuku = ca.tableBuku();
+        if(tableBuku != null){
              this.tblBuku.setModel(tableBuku);
         }else{
             System.out.println("Buku null");
         }
-        
-        ca.tampilanDataBuku();
     }
+
     
 
     /**
@@ -191,14 +185,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         AddBook ab = new AddBook();
         this.setVisible(false);
         ab.setVisible(true);
     }
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         int selectedRow = tblBuku.getSelectedRow();
         if (selectedRow != -1) {
                 //Masukin method/aksi edit disni nanti yo
@@ -207,7 +201,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         }
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
          int selectedRow = tblBuku.getSelectedRow();
         if (selectedRow != -1) { //pengecekan jika belum ada Row yang dipilih
             int id = (int) tblBuku.getValueAt(selectedRow, 0);
