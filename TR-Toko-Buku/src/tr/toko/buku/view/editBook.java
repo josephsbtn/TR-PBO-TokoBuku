@@ -6,6 +6,7 @@ package tr.toko.buku.view;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import tr.toko.buku.controller.controllerAdmin;
+import tr.toko.buku.view.DashboardAdmin;
 
 
 /**
@@ -14,9 +15,7 @@ import tr.toko.buku.controller.controllerAdmin;
  */
 public class editBook extends javax.swing.JFrame {
 
-    /**
-     * Creates new form editBook
-     */
+   DashboardAdmin da = new DashboardAdmin();
     public editBook() {
         initComponents();
         refreshTable();
@@ -124,6 +123,11 @@ public class editBook extends javax.swing.JFrame {
         jLabel3.setText("EDIT BOOK");
 
         jButton2.setText("BACK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,6 +228,11 @@ public class editBook extends javax.swing.JFrame {
     private void authoreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authoreditActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_authoreditActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       da.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     public void editradio(String radio) {
         if ("fiksi".equalsIgnoreCase(radio)) {
@@ -266,7 +275,7 @@ public class editBook extends javax.swing.JFrame {
        
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }                                        
 
     private void edittblMouseClicked(java.awt.event.MouseEvent evt) {
         try {

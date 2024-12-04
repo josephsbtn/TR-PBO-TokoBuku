@@ -18,6 +18,8 @@ public class Cart extends javax.swing.JFrame {
     private double totalHarga = 0;
     private controllerBookStore bs = new controllerBookStore();
   private DefaultTableModel data ;
+  DashboardUser du ;
+  
     
     public Cart() {
         initComponents();
@@ -28,6 +30,7 @@ public class Cart extends javax.swing.JFrame {
        initComponents();
        currentUser = user;   
        refreshTable();
+       du = new DashboardUser(currentUser);
     }
     
 public void refreshTable() {
@@ -168,11 +171,11 @@ public void refreshTable() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DashboardUser du = new DashboardUser(currentUser);
+        
         boolean status = bs.bayar(currentUser.getId());
         if(status){
             du.setVisible(true);

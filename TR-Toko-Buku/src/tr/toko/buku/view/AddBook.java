@@ -22,6 +22,7 @@ public class AddBook extends javax.swing.JFrame {
      */
     public AddBook() {
         initComponents();
+        refreshTable();
     }
     
     public void refreshTable() {
