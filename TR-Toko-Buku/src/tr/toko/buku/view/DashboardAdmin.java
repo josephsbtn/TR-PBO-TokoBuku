@@ -200,21 +200,32 @@ public class DashboardAdmin extends javax.swing.JFrame {
             eb.setVisible(true);
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-         int selectedRow = tblBuku.getSelectedRow();
-        if (selectedRow != -1) { //pengecekan jika belum ada Row yang dipilih
-            int id = (int) tblBuku.getValueAt(selectedRow, 0);
-            if (ca.deleteBuku(id)) { //delete by id
-                refreshTable();
+   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    int selectedRow = tblBuku.getSelectedRow();
+    if (selectedRow != -1) { //ngecek kalo belum ada yang di pilih
+        int id = (int) tblBuku.getValueAt(selectedRow, 0);
+        
+        //konfirmasi
+        int confirm = JOptionPane.showConfirmDialog(this, 
+                "Apakah Anda yakin ingin menghapus buku ini?", 
+                "Konfirmasi Penghapusan", 
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            if (ca.deleteBuku(id)) {
+                refreshTable(); 
                 JOptionPane.showMessageDialog(this, "Buku berhasil dihapus");
             } else {
-                JOptionPane.showMessageDialog(this, "Gagal menghapus buku"); 
+                JOptionPane.showMessageDialog(this, "Gagal menghapus buku");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Pilih buku yang akan dihapus");
+            JOptionPane.showMessageDialog(this, "Penghapusan dibatalkan");
         }
-    
+    } else {
+        JOptionPane.showMessageDialog(this, "Pilih buku yang akan dihapus");
     }
+}
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

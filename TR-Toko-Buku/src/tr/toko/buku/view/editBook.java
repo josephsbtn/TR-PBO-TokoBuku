@@ -56,6 +56,7 @@ public class editBook extends javax.swing.JFrame {
         jLabel1.setText("Book Editing");
 
         edittbl.setBackground(new java.awt.Color(102, 51, 0));
+        edittbl.setForeground(new java.awt.Color(255, 255, 255));
         edittbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

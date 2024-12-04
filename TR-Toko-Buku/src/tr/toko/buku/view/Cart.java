@@ -35,20 +35,29 @@ public class Cart extends javax.swing.JFrame {
        du = new DashboardUser(currentUser);
     }
     
-public void refreshTable() {
-     data = bs.dataTransaksiByUser(currentUser.getId()); 
+    
+    public void refreshTable() {
+    controllerBookStore bs = new controllerBookStore();
+    DefaultTableModel data = bs.dataTransaksiByUser(currentUser.getId());
+
     if (data != null) {
+        //ngeclear tabel e
+        this.tblCart.setModel(new DefaultTableModel());
+        
         this.tblCart.setModel(data);
         System.out.println("Table populated successfully.");
     } else {
         System.out.println("No data found for user!");
         JOptionPane.showMessageDialog(this, "Keranjang masih kosong", "Error", JOptionPane.WARNING_MESSAGE);
     }
+    
+    double totalHarga = 0;
     for (int i = 0; i < tblCart.getRowCount(); i++) {
         totalHarga += Double.parseDouble(tblCart.getValueAt(i, 3).toString());
-        this.lblTotalHarga.setText(String.valueOf(totalHarga));
-    }    
+    }
+    this.lblTotalHarga.setText(String.valueOf(totalHarga));
 }
+
 
 
     
@@ -71,7 +80,7 @@ public void refreshTable() {
         lblTotalHarga = new javax.swing.JLabel();
         lblTotalHarga1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        deletecart = new javax.swing.JButton();
+        btndeleteItem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -106,13 +115,18 @@ public void refreshTable() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblCart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCartMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCart);
 
         jLabel2.setFont(new java.awt.Font("Javanese Text", 1, 14)); // NOI18N
         jLabel2.setText("TOTAL : ");
 
         lblTotalHarga.setFont(new java.awt.Font("Javanese Text", 0, 14)); // NOI18N
-        lblTotalHarga.setText("200000");
+        lblTotalHarga.setText("0");
 
         lblTotalHarga1.setFont(new java.awt.Font("Javanese Text", 0, 14)); // NOI18N
         lblTotalHarga1.setText("Rp");
@@ -126,15 +140,10 @@ public void refreshTable() {
             }
         });
 
-        deletecart.setText("Delete");
-        deletecart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deletecartMouseClicked(evt);
-            }
-        });
-        deletecart.addActionListener(new java.awt.event.ActionListener() {
+        btndeleteItem.setText("Delete");
+        btndeleteItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletecartActionPerformed(evt);
+                btndeleteItemActionPerformed(evt);
             }
         });
 
@@ -146,7 +155,7 @@ public void refreshTable() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(deletecart)
+                        .addComponent(btndeleteItem)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +193,7 @@ public void refreshTable() {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(deletecart))
+                    .addComponent(btndeleteItem))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -192,7 +201,8 @@ public void refreshTable() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        du.setVisible(true);
+        this.setVisible(false);        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -208,23 +218,28 @@ public void refreshTable() {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void deletecartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletecartMouseClicked
-        // TODO add your handling code here:
-       refreshTable();
-       
-       int pilih = tblCart.getSelectedRow();
-        ts.setBukuDibeli(this.tblCart.getValueAt(pilih, 0).toString());
-        ts.setHargaSatuan((double) this.tblCart.getValueAt(pilih, 1));
-        ts.setJumlah((int) this.tblCart.getValueAt(pilih, 2));
-        ts.setSubtotal((double) this.tblCart.getValueAt(pilih, 3));
-        
-    }//GEN-LAST:event_deletecartMouseClicked
+    private void btndeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteItemActionPerformed
+        try {
+            boolean status = bs.deleteItem(ts, currentUser.getId());
+            if(status){
+                refreshTable();
+                JOptionPane.showMessageDialog(this, "Book Deleted Successful", "Successfull!!", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed to Delete Book", "Failed!!", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btndeleteItemActionPerformed
 
-    private void deletecartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletecartActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_deletecartActionPerformed
+    private void tblCartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCartMouseClicked
+        int pilih = tblCart.getSelectedRow();
+        ts.setBukuDibeli(this.tblCart.getValueAt(pilih, 0).toString());
+        ts.setHargaSatuan(Double.parseDouble(this.tblCart.getValueAt(pilih, 1).toString()) );
+        ts.setJumlah(Integer.parseInt( this.tblCart.getValueAt(pilih, 2).toString()));
+        ts.setSubtotal(Double.parseDouble(this.tblCart.getValueAt(pilih, 3).toString()) );
+        this.btndeleteItem.setVisible(true);   
+    }//GEN-LAST:event_tblCartMouseClicked
 
     /**
      * @param args the command line arguments
@@ -262,7 +277,7 @@ public void refreshTable() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deletecart;
+    private javax.swing.JButton btndeleteItem;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
