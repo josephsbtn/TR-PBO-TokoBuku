@@ -60,17 +60,23 @@ public class AddBook extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 255));
 
+        jLabel1.setFont(new java.awt.Font("Javanese Text", 1, 12)); // NOI18N
         jLabel1.setText("Add Book");
 
         jLabel2.setBackground(new java.awt.Color(51, 255, 0));
+        jLabel2.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         jLabel2.setText("Title");
 
+        jLabel3.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         jLabel3.setText("Author");
 
+        jLabel4.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         jLabel4.setText("Category");
 
+        jLabel5.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         jLabel5.setText("Price");
 
+        jLabel6.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         jLabel6.setText("Stock");
 
         txtTitle.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +91,9 @@ public class AddBook extends javax.swing.JFrame {
             }
         });
 
+        addButton.setBackground(new java.awt.Color(51, 0, 255));
+        addButton.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +101,7 @@ public class AddBook extends javax.swing.JFrame {
             }
         });
 
+        tblBook.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         tblBook.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -105,10 +115,13 @@ public class AddBook extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblBook);
 
+        btnfiksi.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         btnfiksi.setText("Fiksi");
 
+        btnnonfiksi.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         btnnonfiksi.setText("Non-Fiksi");
 
+        jButton1.setFont(new java.awt.Font("Javanese Text", 0, 12)); // NOI18N
         jButton1.setText("BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

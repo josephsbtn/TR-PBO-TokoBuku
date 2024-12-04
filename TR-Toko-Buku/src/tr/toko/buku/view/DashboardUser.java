@@ -140,6 +140,8 @@ public DashboardUser(User user) {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(51, 0, 255));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("+ KERANJANG");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
