@@ -63,6 +63,11 @@ public class Register extends javax.swing.JFrame {
         });
 
         btntologin.setText("want to login?");
+        btntologin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntologinActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,6 +139,12 @@ public class Register extends javax.swing.JFrame {
     }
         
     }//GEN-LAST:event_btnregisterActionPerformed
+
+    private void btntologinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntologinActionPerformed
+       Login lgn = new Login();
+        this.setVisible(false);      
+       lgn.setVisible(true); 
+    }//GEN-LAST:event_btntologinActionPerformed
 
     /**
      * @param args the command line arguments

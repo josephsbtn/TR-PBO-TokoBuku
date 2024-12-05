@@ -167,6 +167,7 @@ public void refreshTable() {
 
         lblJudulBuku.setBackground(new java.awt.Color(255, 255, 255));
         lblJudulBuku.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblJudulBuku.setForeground(new java.awt.Color(255, 255, 255));
         lblJudulBuku.setText("-");
         getContentPane().add(lblJudulBuku, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, 113, -1));
 
@@ -212,7 +213,7 @@ public void refreshTable() {
 
         lblHaiUser.setFont(new java.awt.Font("Javanese Text", 0, 14)); // NOI18N
         lblHaiUser.setText("-");
-        getContentPane().add(lblHaiUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 100, 28));
+        getContentPane().add(lblHaiUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 100, 28));
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,7 +257,7 @@ public void refreshTable() {
 
         lblHaiUser1.setFont(new java.awt.Font("Javanese Text", 0, 14)); // NOI18N
         lblHaiUser1.setText("user : ");
-        getContentPane().add(lblHaiUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, 40, 28));
+        getContentPane().add(lblHaiUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 40, 28));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

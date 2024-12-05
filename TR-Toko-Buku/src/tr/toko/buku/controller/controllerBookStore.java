@@ -28,12 +28,11 @@ public class controllerBookStore {
     }
     
 
+
     
 public boolean addToCart(int idUser, String BukuDibeli, int Jumlah, double hargaSatuan, Book buku) {
     Transaction ts = new Transaction();
 
-    // Update the Book stock
-    buku.setSellStok(Jumlah);
 
     // Set the Transaction object
     ts.setIdUser(idUser);
